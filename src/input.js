@@ -1,17 +1,16 @@
-import Paddle from "./paddle";
-
 export default class InputHandler {
   constructor(paddle) {
     document.addEventListener("keydown", event => {
       switch (event.keyCode) {
         //izquierda
         case 37:
-          paddle.moveRight();
+          paddle.moveLeft();
           break;
         //derecha
         case 39:
-          paddle.moveLeft();
+          paddle.moveRight();
           break;
+        default:
       }
     });
 
@@ -19,12 +18,13 @@ export default class InputHandler {
       switch (event.keyCode) {
         //izquierda
         case 37:
-          paddle.stop();
+          if (paddle.speed < 0) paddle.stop();
           break;
         //derecha
         case 39:
-          paddle.stop();
+          if (paddle.speed > 0) paddle.stop();
           break;
+        default:
       }
     });
   }

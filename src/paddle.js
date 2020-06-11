@@ -19,7 +19,6 @@ export default class Paddle {
   }
 
   update(deltaTime) {
-    if (!deltaTime) return;
     this.position.x += this.speed;
 
     if (this.position.x < 0) {
@@ -35,10 +34,10 @@ export default class Paddle {
   }
 
   moveLeft() {
-    this.speed = this.maxSpeed;
+    this.speed = -this.maxSpeed;
   }
 
   moveRight() {
-    this.speed = -this.maxSpeed;
+    this.speed = this.maxSpeed;
   }
 }

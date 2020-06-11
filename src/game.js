@@ -13,16 +13,19 @@ export default class Game {
   start() {
     this.paddle = new Paddle(this);
     this.ball = new Ball(this);
-
-    let bricks = [];
+    let bricks = buildLevel(this, level1);
 
     this.gameObjects = [this.ball, this.paddle, ...bricks];
 
-    new InputHandler(this.paddle);
+    new InputHandler(this.paddle, this);
   }
 
   update(deltaTime) {
     this.gameObjects.forEach(object => object.update(deltaTime));
+
+    this.gameObjects = this.gameObjects.filter(
+      object => !object.markedForDeletion
+    );
   }
 
   draw(ctx) {

@@ -9,7 +9,7 @@ const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
 
 let paddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
-let ball = new Ball();
+let ball = new Ball(GAME_WIDTH, GAME_HEIGHT);
 
 paddle.draw(ctx);
 
@@ -24,6 +24,8 @@ function gameLoop(timeStamp) {
   ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
   paddle.update(deltaTime);
   paddle.draw(ctx);
+
+  ball.update();
   ball.draw(ctx);
   requestAnimationFrame(gameLoop);
 }
